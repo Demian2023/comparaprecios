@@ -34,6 +34,11 @@ h1 {
     line-height: 1.1;
 }
 
+h3,
+h4 {
+    display: inline;
+}
+
 button {
     border-radius: 8px;
     border: 1px solid transparent;
@@ -53,6 +58,31 @@ button:hover {
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
+}
+
+ol {
+    list-style: none;
+}
+
+li {
+    background-color: rgb(235, 235, 235);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 1em;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actualizado {
+    display: flex;
+    justify-content: end;
+}
+
+.resaltado {
+    background-color: yellow;
 }
 
 @media (prefers-color-scheme: light) {
