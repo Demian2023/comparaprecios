@@ -32,6 +32,7 @@ body {
 h1 {
     font-size: 3.2em;
     line-height: 1.1;
+    word-break: normal;
 }
 
 h3,
@@ -49,6 +50,17 @@ button {
     background-color: #1a1a1a;
     cursor: pointer;
     transition: border-color 0.25s;
+    margin: 0 10px;
+}
+
+select {
+    margin-bottom: 10px;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid rgb(184, 184, 184);
+    margin-bottom: 10px;
 }
 
 button:hover {
@@ -57,11 +69,13 @@ button:hover {
 
 button:focus,
 button:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    outline: 1px auto -webkit-focus-ring-color;
 }
 
 ol {
     list-style: none;
+    width: 80vw;
+    min-width: 375px;
 }
 
 li {
@@ -69,6 +83,14 @@ li {
     padding: 20px;
     margin: 20px;
     border-radius: 1em;
+    box-sizing: border-box;
+    width: 75vw;
+    min-width: 300px;
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
 }
 
 footer {
@@ -95,5 +117,19 @@ footer {
     }
     button {
         background-color: #f9f9f9;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body {
+        padding: 10px;
+    }
+     :root {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+    ol {
+        min-width: 0;
     }
 }
