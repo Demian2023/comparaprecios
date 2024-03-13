@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { leerDatos } from '../cargarDatos'
 import moment from 'moment';
 import './index.css'
-import './cargando.css'
 
 function App() {
 
@@ -69,39 +68,43 @@ const buscar = (producto) => {
     const otrosItems = datosFormateados.filter(item => !item.info.toLowerCase().includes(filtro));
     const nuevoArray = [...busquedaItems, ...otrosItems];
     setDatosOrdenados(nuevoArray);
+    setBusqueda("");
   }
 // para filtrar haciendo enter
 const apretarEnter = (event) => {
   if (event.key === 'Enter') {
     filtrar(busqueda);
+    setBusqueda("");
   }
 };
 
   return (
     <>
       <h1>Compara precios</h1>
-      <label>
-        <h2>Selecciona un producto:</h2>
-        <select value={productoSeleccionado} onChange={handleSelectChange}>
-          <option value="">Selecciona un producto</option>
-          <option value="cafe">Café</option>
-          <option value="leche">Leche</option>
-          <option value="azucar">Azúcar</option>
-          <option value="yerba">Yerba</option>
-          <option value="pan">Pan</option>
-        </select>
-      </label>
-      {productoSeleccionado && (
-        <h2>{productoSeleccionado}</h2>
-      )}
       <div className="centrar">
-        <input type="text" value={busqueda} onChange={handleInputChange} onKeyDown={apretarEnter}/>
-        <button onClick={() => { filtrar(busqueda)}}>Filtrar</button>
+        <div>
+          <h2 style={{display: "inline"}}>Producto seleccionado: </h2>
+          <select value={productoSeleccionado} onChange={handleSelectChange}>
+            <option value="">Selecciona un producto</option>
+            <option value="cafe">Café</option>
+            <option value="leche">Leche</option>
+            <option value="azucar">Azúcar</option>
+            <option value="yerba">Yerba</option>
+            <option value="pan">Pan</option>
+          </select>
+        </div>
+       
+        <div>
+          <input type="text" placeholder='Añade un filtro' value={busqueda} onChange={handleInputChange} onKeyDown={apretarEnter}/>
+          <button onClick={() => { filtrar(busqueda)}}>Filtrar</button>
+        </div>
+
       </div>
+        
       <ol>
       {(datosOrdenados.length > 0 ? datosOrdenados : datosFormateados).map((e) => <li key={e.id}><h2>{e.info}</h2>
       <footer>
-      <div><h3>Precio: </h3> <h4 className='resaltado'>$ {e.precio}</h4></div>
+      <div><h3>Precio: </h3> <h2>$ {e.precio}</h2></div>
       <div><h3>Supermercado: </h3><h4>{e.supermercado}</h4></div>
       </footer>
       <div className="actualizado">Actualizado: {e.fecha}</div>
