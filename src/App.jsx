@@ -1,28 +1,28 @@
 import { useState, useEffect } from 'react'
-import { leerDatos } from '../cargarDatos'
+import datosJson from '../base de datos/comparaprecios.json';
 import moment from 'moment';
 import './index.css'
 
 function App() {
 
   const [datos, setDatos] = useState([]);
+  const [datosProducto, setdatosProducto] = useState([]);
   const [datosFormateados, setDatosFormateados] = useState([]);
-  const [datosOrdenados, setDatosOrdenados] = useState([]);
+  const [datosfiltrados, setDatosFiltrados] = useState([]);
   const [busqueda, setBusqueda] = useState("");
 
   const [productoSeleccionado, setProductoSeleccionado] = useState('');
 
   const handleSelectChange = (e) => {
     setProductoSeleccionado(e.target.value);
-    setDatosOrdenados("");
+    buscar(e.target.value);
+    setDatosFiltrados("");
     setBusqueda("");
-    buscar(e.target.value)
   };
 
   const handleInputChange = (event) => {
     setBusqueda(event.target.value);
   };
-
 
   // funcion para dar formato al precio
   const formatearCantidad = cantidad => {
@@ -34,21 +34,19 @@ function App() {
     });
   };
 
-
 const buscar = (producto) => {
-  leerDatos(producto)
-    .then(data => {
-      setDatos(data);
-    })
-    .catch(error => {
-      console.error('Error en la solicitud:', error);
-      // Puedes agregar un estado para manejar el error si es necesario
-    });
+  console.log(datos)
+  const resultados = datos.find(tabla => tabla.name.toLowerCase() === producto.toLowerCase());
+  resultados && setdatosProducto(resultados.data);
 };
+
+  useEffect(() => {
+    setDatos(datosJson)
+  }, []);
 // convertir los datos
   useEffect(() => {
-    datos.sort((a, b) => a.precio - b.precio)
-    datos.forEach(item => {
+    datosProducto.sort((a, b) => a.precio - b.precio)
+    datosProducto.forEach(item => {
       try {
         const stringANumero = Number(item.precio.replace(',', '.'));
         item.fecha = moment(item.fecha, "YYYY/MM/DD HH:mm:ss").format("DD/MM/YYYY HH:mm:ss");
@@ -58,8 +56,8 @@ const buscar = (producto) => {
       }
       
     });
-    setDatosFormateados([...datos]);
-  }, [datos]);
+    setDatosFormateados([...datosProducto]);
+  }, [datosProducto]);
 
 
 // funcion para filtrar
@@ -67,7 +65,7 @@ const buscar = (producto) => {
     const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtro));
     const otrosItems = datosFormateados.filter(item => !item.info.toLowerCase().includes(filtro));
     const nuevoArray = [...busquedaItems, ...otrosItems];
-    setDatosOrdenados(nuevoArray);
+    setDatosFiltrados(nuevoArray);
     setBusqueda("");
   }
 // para filtrar haciendo enter
@@ -102,7 +100,9 @@ const apretarEnter = (event) => {
       </div>
         
       <ol>
-      {(datosOrdenados.length > 0 ? datosOrdenados : datosFormateados).map((e) => <li key={e.id}><h2>{e.info}</h2>
+      {(datosfiltrados.length > 0 ? datosfiltrados : datosFormateados).map((e) => 
+      <li key={e.id}>
+      <h2>{e.info}</h2>
       <footer>
       <div><h3>Precio: </h3> <h2>$ {e.precio}</h2></div>
       <div><h3>Supermercado: </h3><h4>{e.supermercado}</h4></div>

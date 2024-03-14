@@ -10,6 +10,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: "JosefinSans";
+    scrollbar-color: white #6065ff;
+    scrollbar-width: thin;
 }
 
 @font-face {
@@ -100,6 +102,11 @@ li {
     min-width: 300px;
 }
 
+li>h2 {
+    display: flex;
+    justify-content: center;
+}
+
 .centrar {
     display: flex;
     flex-wrap: wrap;
@@ -131,7 +138,30 @@ footer {
     }
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 400px) {
+    body {
+        width: fit-content;
+        padding: 10px;
+        height: fit-content;
+        min-height: 300vh;
+    }
+    ol {
+        padding: 0;
+        margin: auto;
+    }
+    li {
+        width: fit-content;
+    }
+    .actualizado {
+        justify-content: center;
+    }
+    .centrar>div {
+        text-align: center;
+        margin: auto;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 575.98px) {
     body {
         padding: 10px;
     }
@@ -149,6 +179,12 @@ footer {
     button {
         margin: 0;
         margin-left: 10px;
+    }
+    .actualizado {
+        justify-content: center;
+    }
+    h2 {
+        font-size: 1.25em;
     }
 }
 
