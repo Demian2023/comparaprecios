@@ -62,8 +62,8 @@ const buscar = (producto) => {
 
 // funcion para filtrar
   const filtrar = (filtro) => {
-    const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtro));
-    const otrosItems = datosFormateados.filter(item => !item.info.toLowerCase().includes(filtro));
+    const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtro.toLowerCase()));
+    const otrosItems = datosFormateados.filter(item => !item.info.toLowerCase().includes(filtro.toLowerCase()));
     const nuevoArray = [...busquedaItems, ...otrosItems];
     setDatosFiltrados(nuevoArray);
     setBusqueda("");
