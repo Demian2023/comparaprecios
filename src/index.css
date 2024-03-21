@@ -12,6 +12,7 @@
     font-family: "JosefinSans";
     scrollbar-color: white #6065ff;
     scrollbar-width: thin;
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -57,33 +58,37 @@ h4 {
 }
 
 select,
-input,
-button {
+input[type="text"],
+button,
+.filtro {
     font-family: Arial, Helvetica, sans-serif !important;
     appearance: none;
     border-radius: 8px;
     border: 1px solid black;
     padding: 0.6em 1.2em;
+    margin-bottom: 10px;
     font-size: 1em;
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
-    margin-bottom: 10px;
-}
-
-button {
-    background-color: #1a1a1a;
-    transition: border-color 0.25s;
-    margin: 0 10px;
-}
-
-button:hover {
-    border-color: #2257ee;
 }
 
 button:focus,
 button:focus-visible {
     outline: 1px auto -webkit-focus-ring-color;
+}
+
+.filtro {
+    background-color: #f9f9f9;
+}
+
+.filtro:hover {
+    background-color: #ededed;
+}
+
+label {
+    display: inline-block;
+    margin-right: 10px;
 }
 
 ol {
@@ -112,6 +117,7 @@ li>h2 {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 
