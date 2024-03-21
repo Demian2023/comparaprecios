@@ -68,13 +68,12 @@ button {
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
-    margin-bottom: 10px;
 }
 
 button {
     background-color: #1a1a1a;
     transition: border-color 0.25s;
-    margin: 0 10px;
+    margin: 10px;
 }
 
 button:hover {
@@ -112,6 +111,7 @@ li>h2 {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 

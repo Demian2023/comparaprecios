@@ -54,7 +54,7 @@ const buscar = (producto) => {
       } catch (error) {
         console.log("no ando el .replace(): ", error, " item: ", item.info)
       }
-      
+    
     });
     setDatosFormateados([...datosProducto]);
   }, [datosProducto]);
@@ -63,8 +63,9 @@ const buscar = (producto) => {
 // funcion para filtrar
   const filtrar = (filtro) => {
     const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtro.toLowerCase()));
-    const otrosItems = datosFormateados.filter(item => !item.info.toLowerCase().includes(filtro.toLowerCase()));
-    const nuevoArray = [...busquedaItems, ...otrosItems];
+    // const otrosItems = datosFormateados.filter(item => !item.info.toLowerCase().includes(filtro.toLowerCase()));
+    // const nuevoArray = [...busquedaItems, ...otrosItems];
+    const nuevoArray = [...busquedaItems];
     setDatosFiltrados(nuevoArray);
     setBusqueda("");
   }
@@ -84,13 +85,141 @@ const apretarEnter = (event) => {
           <h2 style={{display: "inline"}}>Producto seleccionado: </h2>
           <select value={productoSeleccionado} onChange={handleSelectChange}>
             <option value="">Selecciona un producto</option>
-            <option value="cafe">Café</option>
-            <option value="leche">Leche</option>
+            <option value="aceite">Aceite</option>
             <option value="azucar">Azúcar</option>
-            <option value="yerba">Yerba</option>
+            <option value="cafe">Café</option>
+            <option value="cerveza">Cerveza</option>
+            <option value="leche">Leche</option>
             <option value="pan">Pan</option>
+            <option value="yerba">Yerba</option>
           </select>
         </div>
+
+        {productoSeleccionado === 'aceite' && (
+        <div>
+          <button onClick={()=>filtrar("900")}>Filtro por 900 cc.</button>
+          <button onClick={()=>filtrar("5 l")}>Filtro por 1,5 litros</button>
+          <button onClick={()=>filtrar("girasol")}>Filtrar por girasol</button>
+          <button onClick={()=>filtrar("maíz")}>Filtrar por maíz</button>
+          <button onClick={()=>filtrar("oliva")}>Filtrar por Oliva</button>
+          <div>
+            <button onClick={()=>filtrar(" ")}>Volver a la lista</button>
+          </div>
+        </div>
+      )}
+
+      {productoSeleccionado === 'azucar' && (
+        <div>
+          {/* Contenido específico para azúcar */}
+          <button onClick={()=>filtrar("1 k")}>Filtro por kilo</button>
+          <button onClick={()=>filtrar("chango")}>Filtro por marca Chango</button>
+          <button onClick={()=>filtrar("hileret")}>Filtro por marca Hileret</button>
+          <button onClick={()=>filtrar(" ")}>Volver a la lista</button>
+        </div>
+      )}
+
+      {productoSeleccionado === 'cafe' && (
+        <div>
+          {/* Contenido específico para café */}
+          <div>
+            <div>
+              <h2>Filtrar por marca: </h2>
+            </div>
+            <button onClick={()=>filtrar("arlistan")}>Arlistán</button>
+            <button onClick={()=>filtrar("dolca")}>Dolca</button> 
+            <button onClick={()=>filtrar("nescafe")}>Nescafé</button> 
+            <button onClick={()=>filtrar("bonafide")}>Bonafide</button> 
+            <button onClick={()=>filtrar("morenita")}>La Morenita</button> 
+          </div>
+          
+          <div>
+          <button onClick={()=>filtrar("instant")}>Filtrar por instantáneo</button> 
+          </div>
+          <div>
+            <h2>Filtrar por gramos: </h2>
+          </div>
+          <button onClick={()=>filtrar("50 g")}>50 gramos</button>
+          <button onClick={()=>filtrar("100 g")}>100 gramos</button>
+          <button onClick={()=>filtrar("125 g")}>125 gramos</button>
+          <button onClick={()=>filtrar("170 g")}>170 gramos</button>
+          <button onClick={()=>filtrar("250 g")}>250 gramos</button>
+
+          <div>
+            <button onClick={()=>filtrar(" ")}>Volver a la lista</button>  
+          </div>
+          
+        </div>
+      )}
+
+      {productoSeleccionado === 'cerveza' && (
+        <div>
+          <div>
+              <h2>Filtrar por marca: </h2>
+          </div>
+          <button onClick={()=>filtrar("quilmes")}>Quilmes</button>
+          <button onClick={()=>filtrar("brahma")}>Brahma</button>
+          <button onClick={()=>filtrar("schneider")}>Schneider</button>
+          <button onClick={()=>filtrar("imperial")}>Imperial</button>
+          <button onClick={()=>filtrar("andes")}>Andes</button>
+          <button onClick={()=>filtrar("stella")}>Stella Artois</button>
+          <button onClick={()=>filtrar("corona")}>Corona</button>
+          <button onClick={()=>filtrar("heineken")}>Heineken</button>
+          <button onClick={()=>filtrar("patagonia")}>Patagonia</button>
+          <button onClick={()=>filtrar("budweiser")}>Budweiser</button>
+          <div>
+              <h2>Filtrar por contenido: </h2>
+          </div>
+          <button onClick={()=>filtrar("1 l")}>Filtro por litro</button>
+          <button onClick={()=>filtrar("473")}>Filtrar por lata</button>
+          <button onClick={()=>filtrar(" ")}>Volver a la lista</button>
+        </div>
+      )}
+
+      {productoSeleccionado === 'leche' && (
+        <div>
+          <button onClick={()=>filtrar("1 l")}>Filtro por litro</button>
+          <button onClick={()=>filtrar("seren")}>Filtrar por marca La Serenísima</button>
+          <button onClick={()=>filtrar("sachet")}>Filtro por sachet</button>
+          <button onClick={()=>filtrar("en polvo")}>Filtro por en polvo</button>
+          <button onClick={()=>filtrar(" ")}>Volver a la lista</button>
+        </div>
+      )}
+
+      
+
+      {productoSeleccionado === 'pan' && (
+        <div>
+          <button onClick={()=>filtrar("1 k")}>Filtro por kilo</button>
+          <button onClick={()=>filtrar("rallado")}>Pan rallado</button>
+          <button onClick={()=>filtrar("pancho")}>Pan para panchos</button>
+          <button onClick={()=>filtrar("hamburguesas")}>Pan para hamburguesas</button>
+          <button onClick={()=>filtrar(" ")}>Volver a la lista</button>
+        </div>
+      )}
+
+      {productoSeleccionado === 'yerba' && (
+        <div>
+          <div>
+            <h2>Filtrar por marca: </h2>
+          </div>
+
+          <button onClick={()=>filtrar("tarag")}>Taragui</button>
+          <button onClick={()=>filtrar("uni")}>Unión</button>
+          <button onClick={()=>filtrar("playadito")}>Playadito</button>
+          <button onClick={()=>filtrar("tranquera")}>La Tranquera</button>
+          <button onClick={()=>filtrar("verdeflor")}>Verdeflor</button>
+          <button onClick={()=>filtrar("nobleza")}>Nobleza Gaucha</button>
+
+          <div>
+            <h2>Filtrar por peso: </h2>
+          </div>
+          <button onClick={()=>filtrar("1 k")}>Filtro por kilo</button>
+          <button onClick={()=>filtrar("500 g")}>Filtro por 1/2 kilo</button>
+          <div>
+            <button onClick={()=>filtrar(" ")}>Volver a la lista</button>
+          </div>
+        </div>
+      )}
        
         <div>
           <input type="text" placeholder='Añade un filtro' value={busqueda} onChange={handleInputChange} onKeyDown={apretarEnter}/>
