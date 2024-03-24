@@ -31,17 +31,19 @@ function App() {
     });
     setDatosFormateados([...datosProducto]);
   }, [datosProducto]);
+
 // manejo de cambios para elegir producto
   const handleSelectChange = (e) => {
     setProductoSeleccionado(e.target.value);
     buscar(e.target.value);
     setDatosFiltrados("");
     setBusqueda("");
-  }
+  };
+
 // filtro para completar por el usuario
   const handleInputChange = (event) => {
     setBusqueda(event.target.value);
-  }
+  };
 // manejar checkbox
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
@@ -54,6 +56,7 @@ function App() {
     setCheckboxes(nuevoCheckbox)
     filtrado(nuevoCheckbox)
   }
+
 // funcion para dar formato al precio
   const formatearCantidad = cantidad => {
       return cantidad.toLocaleString('es-ES', {
@@ -63,6 +66,7 @@ function App() {
         maximumFractionDigits: 2,
       });
   }
+
 // buscar el producto
   const buscar = (producto) => {
     console.log("datos: ", datos)

@@ -71,6 +71,17 @@ button,
     font-weight: 500;
     font-family: inherit;
     cursor: pointer;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #1a1a1a;
+    transition: border-color 0.25s;
+    margin: 0 10px;
+}
+
+button:hover {
+    border-color: #2257ee;
 }
 
 button:focus,
