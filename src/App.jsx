@@ -59,14 +59,15 @@ function App() {
     if (filtros.length == 1) {
       const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtros[0].toLowerCase()));
       nuevoArray = [...busquedaItems];
-    } else {
-      // for (let i = 0; i < filtros.length; i++) {
-      //   const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtros[i].toLowerCase()))
-      //   nuevoArray = [...nuevoArray, ...busquedaItems]
-      // }
+    } else if (filtros.length == 2) {
       const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtros[0].toLowerCase()));
       const busquedaItems2 = busquedaItems.filter(item => item.info.toLowerCase().includes(filtros[1].toLowerCase()));
       nuevoArray = [...busquedaItems2];
+    } else if (filtros.length == 3) {
+      const busquedaItems = datosFormateados.filter(item => item.info.toLowerCase().includes(filtros[0].toLowerCase()));
+      const busquedaItems2 = busquedaItems.filter(item => item.info.toLowerCase().includes(filtros[1].toLowerCase()));
+      const busquedaItems3 = busquedaItems2.filter(item => item.info.toLowerCase().includes(filtros[2].toLowerCase()));
+      nuevoArray = [...busquedaItems3];
     }
     // eliminar duplicados
     nuevoArray = [...new Set(nuevoArray)]
